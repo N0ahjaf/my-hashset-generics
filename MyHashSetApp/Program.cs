@@ -4,37 +4,45 @@ class Program
 {
     static void Main(string[] args)
     {
-        MyHashSet set = new MyHashSet();
+        DataStore<string> dataStoreString = new DataStore<string>();
+        dataStoreString.Data = "Noah";
+        
+        DataStore<int> dataStoreInt = new DataStore<int>();
+        dataStoreInt.Data = 1;
+        
+        DataStore<decimal> dataStoreDecimal = new DataStore<decimal>();
+        dataStoreDecimal.Data = 2m;
+        
+        dataStoreDecimal.DataArray[0] = 5m;
+        
+        dataStoreInt.AddOrUpdate(2, 5);
 
-        // TODO 1) Datei-Einlesen: lehrpersonen.txt mit using und StreamReader einlesen.
-        // Kopfzeile, Kommentarzeilen (#), falsche Zeilen und leere Zeilen überspringen.
-        // Jede eingelesene Lehrperson mit Add in das Set einfügen (siehe Angabe: File I/O).
-        // Vorerst 3 fixe Lehrpersonen zum Testen der Grundfunktionen:
-        Lehrperson anna = new Lehrperson("Anna", "Huber", new DateTime(1980, 3, 12), Unterrichtsfach.Informatik, 18);
-        Lehrperson anna2 = new Lehrperson("Anna", "Petrovic", new DateTime(1977, 5, 4), Unterrichtsfach.Informatik, 18);
-        Lehrperson jose = new Lehrperson("José", "Rojas", new DateTime(1975, 11, 5), Unterrichtsfach.Mathematik, 20);
-        Lehrperson shirin = new Lehrperson("Shirin", "Karimi", new DateTime(1990, 7, 23), Unterrichtsfach.Deutsch, 22);
+        Console.WriteLine(dataStoreInt.GetData(2));
+        
+    }
+}
 
-        set.Add(anna);
-        set.Add(anna2);
-        set.Add(jose);
-        set.Add(shirin);
+class DataStore<T>
+{
+    public T Data { get; set; }
+    
+    public T[] DataArray = new T[10];
 
-        Console.WriteLine($"\nCount: {set.Count}, Capacity: {set.Capacity}");
-        Console.WriteLine(set); // ToString: alle Slots, Index 0 zuerst
 
-        // TODO 2) IEnumerable: mit foreach über das Set iterieren (von hinten nach vorne)
+    public void AddOrUpdate(int i, T value)
+    {
+        if(i <= DataArray.Length || i>=0)
+        {
+            DataArray[i] = value;
+        }
+    }
 
-        // TODO 3) IEquatable: prüfen, ob eine neu erstellte Lehrperson mit gleichem Fach
-        // und gleichen Wochenstunden (aber anderem Namen) mit Contains gefunden wird
-
-        // TODO 4) IComparable und IComparer: Lehrpersonen aus dem Set in eine List<Lehrperson>
-        // kopieren und mit Sort() (natürliche Ordnung), FachNachnameComparer und
-        // DekadeFachNachnameComparer sortieren. Jedes Ergebnis ausgeben.
-
-        // TODO 5) Szenario Projekttag: Queue (Anmeldung, mit Peek) und Stack (Aufräumdienst)
-
-        // TODO Erweiterungen zum Üben: RandomIterator, AmountIterator, DoubleIterator,
-        // JumpingIterator, ZigZagIterator
+    public T GetData(int i)
+    {
+        if(i  <= DataArray.Length || i>=0)
+        {
+            return DataArray[i];
+        }
+        throw new IndexOutOfRangeException();
     }
 }
