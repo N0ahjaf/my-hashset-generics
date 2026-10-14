@@ -18,15 +18,7 @@ public class Lehrperson
         Wochenstunden = wochenstunden;
     }
 
-    // TODO: Coolheitsfaktor (readonly Property, int) berechnen. Siehe Angabe für die Formel.
-
-    // TODO: IEquatable<Lehrperson> implementieren (Equals + GetHashCode).
-    // Zwei Lehrpersonen sind gleich, wenn Fach und Wochenstunden übereinstimmen.
-    // GetHashCode darf nur Felder verwenden, die auch in Equals verglichen werden.
-
-    // TODO: IComparable<Lehrperson> implementieren (CompareTo).
-    // Natürliche Ordnung: aufsteigend nach Coolheitsfaktor.
-
+    
     public override string ToString()
     {
         return $"{Nachname} {Vorname}, {Fach}, {Wochenstunden} Std., {Geburtsdatum:dd.MM.yyyy}";
