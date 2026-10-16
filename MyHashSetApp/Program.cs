@@ -3,8 +3,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        MyHashSet set = new MyHashSet();
-       
+        MyHashSet<Lehrperson> set = new MyHashSet<Lehrperson>();
+        MyHashSet<int> set2 = new MyHashSet<int>();
+        
         Lehrperson anna = new Lehrperson("Anna", "Huber", new DateTime(1980, 3, 12), Unterrichtsfach.Informatik, 18);
         Lehrperson anna2 = new Lehrperson("Anna", "Petrovic", new DateTime(1977, 5, 4), Unterrichtsfach.Informatik, 18);
         Lehrperson jose = new Lehrperson("José", "Rojas", new DateTime(1975, 11, 5), Unterrichtsfach.Mathematik, 20);
@@ -13,6 +14,13 @@ class Program
         set.Add(anna2);
         set.Add(jose);
         set.Add(shirin);
+        
+        
+        set2.Add(2);
+        set2.Add(6);
+        set2.Add(21);
+        set2.Add(99);
+        
         Console.WriteLine($"\nCount: {set.Count}, Capacity: {set.Capacity}");
         Console.WriteLine(set); // ToString: alle Slots, Index 0 zuerst
        
