@@ -1,4 +1,5 @@
 namespace MyHashSetApp;
+
 class Program
 {
     static void Main(string[] args)
@@ -23,6 +24,6 @@ class Program
         
         Console.WriteLine($"\nCount: {set.Count}, Capacity: {set.Capacity}");
         Console.WriteLine(set); // ToString: alle Slots, Index 0 zuerst
-       
+
     }
 }
